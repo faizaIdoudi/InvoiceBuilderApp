@@ -1,22 +1,55 @@
-<script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
-import Welcome from '@/Components/Welcome.vue';
-</script>
-
 <template>
-    <AppLayout title="Dashboard">
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
-            </h2>
-        </template>
-
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <Welcome />
-                </div>
-            </div>
-        </div>
-    </AppLayout>
-</template>
+    <div class="dashboard flex">
+      <!-- Menu à gauche -->
+      <aside class="w-1/4 h-screen bg-gray-800 text-white">
+        <nav class="p-16">
+          <ul>
+            <!-- Lien vers Dashboard -->
+            <li class="mb-4">
+              <a href="#" class="flex items-center space-x-3 p-2 rounded hover:bg-blue-700">
+                <span class="material-icons">dashboard</span>
+                
+              </a>
+            </li>
+  
+            <!-- Lien vers Users -->
+            <li class="mb-4">
+              <a href="#" class="flex items-center space-x-3 p-2 rounded hover:bg-blue-700">
+                
+                <span>Utilisateurs</span>
+              </a>
+            </li>
+  
+            <!-- Lien vers Clients -->
+            <li class="mb-4">
+              <a href="#" class="flex items-center space-x-3 p-2 rounded hover:bg-blue-700">
+             
+                <span>Clients</span>
+              </a>
+            </li>
+  
+            <!-- Lien vers Factures -->
+            <li class="mb-4">
+              <a href="#" class="flex items-center space-x-3 p-2 rounded hover:bg-blue-700">
+              
+                <span>Factures</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+  
+      <!-- Contenu principal -->
+      <main class="w-3/4 p-4">
+        <h1 class="text-2xl font-bold">Bienvenue sur le Dashboard</h1>
+        <!-- Contenu du dashboard -->
+      </main>
+    </div>
+  </template>
+  
+  <script>
+  export default {
+    name: "Dashboard",
+  };
+  </script>
+  
