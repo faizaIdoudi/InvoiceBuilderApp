@@ -20,13 +20,13 @@
               </a>
             </li>
   
-            <!-- Lien vers Clients -->
+           <!-- Lien vers Clients -->
             <li class="mb-4">
-              <a href="#" class="flex items-center space-x-3 p-2 rounded hover:bg-blue-700">
-             
+              <a @click.prevent="$inertia.visit(route('client.index'))" class="flex items-center space-x-3 p-2 rounded hover:bg-blue-700 cursor-pointer">
                 <span>Clients</span>
               </a>
             </li>
+
   
             <!-- Lien vers Factures -->
             <li class="mb-4">

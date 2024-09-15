@@ -20,6 +20,12 @@ Route::middleware([
 
 
     Route::get('/client',[ClientController::class, 'index'])->name('client.index');
+    Route::get('/client/create', [ClientController::class, 'create'])->name('client.create');
+    Route::post('/client', [ClientController::class, 'store'])->name('client.store');
+    Route::get('/client/edit/{id}', [ClientController::class, 'edit'])->name('client.edit');
+    Route::put('/client/{id}', [ClientController::class, 'update'])->name('client.update');
+    Route::delete('/client/{id}', [ClientController::class, 'destroy'])->name('client.destroy');
+
 
 });
 
