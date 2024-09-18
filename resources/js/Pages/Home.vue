@@ -29,7 +29,7 @@ export default {
   
   <style scoped>
   .home-container {
-    background-image: url('@/assets/background.jpg'); /* Ajoute une image de fond si nécessaire */
+   
     background-size: cover;
     background-position: center;
   }
