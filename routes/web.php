@@ -17,6 +17,13 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard',[AdminController::class, 'index'])->name('dashboard');
     Route::get('/team',[TeamController::class, 'index'])->name('team.index');
+    Route::get('/team/create', [TeamController::class, 'create'])->name('team.create');
+    Route::post('/team', [TeamController::class, 'store'])->name('team.store');
+    Route::get('/team/{slug}/edit', [TeamController::class, 'edit'])->name('team.edit');
+    Route::post('/team/{slug}', [TeamController::class, 'update'])->name('team.update');
+    Route::post('/team/{slug}', [TeamController::class, 'destroy'])->name('team.delete');
+    Route::get('/team/{slug}', [TeamController::class, 'show'])->name('team.show');  
+
 
 
     Route::get('/client',[ClientController::class, 'index'])->name('client.index');

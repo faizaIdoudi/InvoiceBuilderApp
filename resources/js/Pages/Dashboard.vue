@@ -14,7 +14,8 @@
   
             <!-- Lien vers Users -->
             <li class="mb-4">
-              <a href="#" class="flex items-center space-x-3 p-2 rounded hover:bg-blue-700">
+          
+              <a @click.prevent="$inertia.visit(route('team.index'))" class="flex items-center space-x-3 p-2 rounded hover:bg-blue-700 cursor-pointer">
                 
                 <span>Utilisateurs</span>
               </a>
