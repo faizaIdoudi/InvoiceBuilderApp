@@ -39,14 +39,14 @@ class TeamController extends Controller
         return redirect()->route('team.index');
     }
 
-      public function edit($slug) {
-        $team = Team::where('slug',$slug)->firstOrFail();
+      public function edit($id) {
+        $team = Team::where('id',$id)->firstOrFail();
         return inertia('Team/Edit',compact('team'));
     }
 
-    public function update(Request $request,$slug) {
+    public function update(Request $request,$id) {
         
-        $team = Team::where('slug',$slug)->firstOrFail();
+        $team = Team::where('id',$id)->firstOrFail();
         $team->first_name = $request->first_name;
         $team->surname = $request->surname;
         $team->email = $request->email;
@@ -55,9 +55,14 @@ class TeamController extends Controller
         return redirect()->route('team.index');
     }
 
-    public function destroy(Team $team) {
-        $team->delete();
-        return redirect()->route('team.index');
-    }
+    public function destroy($id)
+{
+    $team = Team::findOrFail($id); // Add the missing semicolon here
+    $team->delete();
 
+    return redirect()->route('team.index')->with('success', 'Client removed successfully.');
+}
+
+
+    
 }

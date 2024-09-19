@@ -25,8 +25,8 @@
             <td>{{ team.surname }}</td>
             <td>{{ team.email }}</td>
             <td>
-              <button @click="editMember(team.id)" class="action-btn edit">Update</button>
-              <button @click="removeMember(team.id)" class="action-btn delete">Remove</button>
+              <button @click="editTeam(team.id)" class="action-btn edit">Update</button>
+              <button @click="removeTeam(team.id)" class="action-btn delete">Remove</button>
             </td>
           </tr>
         </tbody>
@@ -50,17 +50,23 @@ export default {
   },
   methods: {
     goToCreateForm() {
-      this.$inertia.visit('/team/create'); // Redirect to form for adding new member
+      this.$inertia.visit('/team/create'); // Redirect to form for adding new team member
     },
-    editMember(id) {
+    editTeam(id) {
       this.$inertia.visit(`/team/${id}/edit`); // Redirect to edit form
     },
-    async removeMember(id) {
-      if (confirm('Are you sure you want to remove this member?')) {
+    async removeTeam(id) {
+      if (confirm('Are you sure you want to remove this team member?')) {
         try {
-          await this.$inertia.delete(`/team/${id}`); // Call the delete route
+          await this.$inertia.delete(`/team/${id}`, {
+            onSuccess: () => alert('Team member removed successfully'),
+            onError: (error) => {
+              console.error('Error removing team member:', error);
+              alert('Error removing the team member');
+            },
+          });
         } catch (error) {
-          console.error('Error removing member:', error);
+          console.error('Error removing team member:', error);
         }
       }
     },
