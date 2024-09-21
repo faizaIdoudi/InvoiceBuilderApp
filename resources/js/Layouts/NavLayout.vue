@@ -25,13 +25,14 @@
                 <span>Clients</span>
               </a>
             </li>
-  
+
             <!-- Lien vers Factures -->
             <li class="mb-4">
-              <a href="#" class="flex items-center space-x-3 p-2 rounded hover:bg-blue-700">
+              <a @click.prevent="$inertia.visit(route('facture.index'))" class="flex items-center space-x-3 p-2 rounded hover:bg-blue-700 cursor-pointer">
                 <span>Factures</span>
               </a>
             </li>
+           
           </ul>
         </nav>
       </aside>

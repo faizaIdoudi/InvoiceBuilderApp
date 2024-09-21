@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\ClientController;
+use App\Http\Controllers\FactureController;
 
 Route::get('/',[HomeController::class, 'index'])->name('home');
 
@@ -32,6 +33,14 @@ Route::middleware([
     Route::get('/client/edit/{id}', [ClientController::class, 'edit'])->name('client.edit');
     Route::put('/client/{id}', [ClientController::class, 'update'])->name('client.update');
     Route::delete('/client/{id}', [ClientController::class, 'destroy'])->name('client.destroy');
+
+    Route::get('/facture',[FactureController::class, 'index'])->name('facture.index');
+    Route::get('/facture/create', [FactureController::class, 'create'])->name('facture.create');
+    Route::post('/facture', [FactureController::class, 'store'])->name('facture.store');
+    Route::get('/facture/edit/{id}', [FactureController::class, 'edit'])->name('facture.edit');
+    Route::put('/facture/{id}', [FactureController::class, 'update'])->name('facture.update');
+    Route::delete('/facture/{id}', [FactureController::class, 'destroy'])->name('facture.destroy');
+    Route::delete('/facture/{id}', [FactureController::class, 'show'])->name('facture.show');
 
 
 });
