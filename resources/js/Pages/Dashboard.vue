@@ -1,56 +1,43 @@
 <template>
-    <div class="dashboard flex">
-      <!-- Menu à gauche -->
-      <aside class="w-1/4 h-screen bg-gray-800 text-white">
-        <nav class="p-16">
-          <ul>
-            <!-- Lien vers Dashboard -->
-            <li class="mb-4">
-              <a href="#" class="flex items-center space-x-3 p-2 rounded hover:bg-blue-700">
-                <span class="material-icons">dashboard</span>
-                
-              </a>
-            </li>
-  
-            <!-- Lien vers Users -->
-            <li class="mb-4">
-          
-              <a @click.prevent="$inertia.visit(route('team.index'))" class="flex items-center space-x-3 p-2 rounded hover:bg-blue-700 cursor-pointer">
-                
-                <span>Utilisateurs</span>
-              </a>
-            </li>
-  
-           <!-- Lien vers Clients -->
-            <li class="mb-4">
-              <a @click.prevent="$inertia.visit(route('client.index'))" class="flex items-center space-x-3 p-2 rounded hover:bg-blue-700 cursor-pointer">
-                <span>Clients</span>
-              </a>
-            </li>
-
-  
-            <!-- Lien vers Factures -->
-            <li class="mb-4">
-              <a href="#" class="flex items-center space-x-3 p-2 rounded hover:bg-blue-700">
-              
-                <span>Factures</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </aside>
-  
-      <!-- Contenu principal -->
-      <main class="w-3/4 p-4">
-        <h1 class="text-2xl font-bold">Bienvenue sur le Dashboard</h1>
-        <!-- Contenu du dashboard -->
-      </main>
+  <NavLayout>
+    <div class="dashboard-container">
+      <h1 class="dashboard-title">Bienvenue sur le Dashboard</h1>
+      <p class="dashboard-description">
+        Ceci est votre espace de travail principal. Utilisez le menu de navigation à gauche pour accéder aux fonctionnalités de l'application.
+      </p>
+      <!-- Ajouter ici le contenu du dashboard -->
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: "Dashboard",
-  };
-  </script>
-  
+  </NavLayout>
+</template>
+
+<script>
+import NavLayout from '@/Layouts/NavLayout.vue'; // Assurez-vous que le chemin est correct
+
+export default {
+  name: "Dashboard",
+  components: {
+    NavLayout
+  },
+};
+</script>
+
+<style scoped>
+.dashboard-container {
+  padding: 20px;
+}
+
+.dashboard-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #1a202c; /* Couleur du texte : gris foncé */
+}
+
+.dashboard-description {
+  font-size: 1rem;
+  color: #4a5568; /* Texte gris moyen */
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+</style>

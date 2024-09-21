@@ -1,52 +1,59 @@
 <template>
-  <div class="team-management">
-    <!-- Header -->
-    <div class="header">
-      <h1>Team Members</h1>
-      <button class="add-team-btn" @click="goToCreateForm">+ Add New Team Member</button>
-    </div>
+  <NavLayout>
+    <div class="team-management">
+      <!-- Header -->
+      <div class="header">
+        <h1>Team Members</h1>
+        <button class="add-team-btn" @click="goToCreateForm">+ Add New Team Member</button>
+      </div>
 
-    <!-- Team List -->
-    <div v-if="teams.length" class="team-list">
-      <table class="team-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>First Name</th>
-            <th>Surname</th>
-            <th>Email</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(team, index) in teams" :key="team.id">
-            <td>{{ index + 1 }}</td>
-            <td>{{ team.first_name }}</td>
-            <td>{{ team.surname }}</td>
-            <td>{{ team.email }}</td>
-            <td>
-              <button @click="editTeam(team.id)" class="action-btn edit">Update</button>
-              <button @click="removeTeam(team.id)" class="action-btn delete">Remove</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <!-- Team List -->
+      <div v-if="teams.length" class="team-list">
+        <table class="team-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>First Name</th>
+              <th>Surname</th>
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(team, index) in teams" :key="team.id">
+              <td>{{ index + 1 }}</td>
+              <td>{{ team.first_name }}</td>
+              <td>{{ team.surname }}</td>
+              <td>{{ team.email }}</td>
+              <td>
+                <button @click="editTeam(team.id)" class="action-btn edit">Update</button>
+                <button @click="removeTeam(team.id)" class="action-btn delete">Remove</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-    <!-- No Team Members Message -->
-    <div v-else class="no-team">
-      <p>No team members found. Please add a new member.</p>
+      <!-- No Team Members Message -->
+      <div v-else class="no-team">
+        <p>No team members found. Please add a new member.</p>
+      </div>
     </div>
-  </div>
+  </NavLayout>
 </template>
 
 <script>
+import NavLayout from '@/Layouts/NavLayout.vue'; // Assurez-vous que le chemin est correct
+
 export default {
   props: {
     teams: {
       type: Array,
       default: () => [], // Default value is an empty array
     },
+  },
+  components: {
+    NavLayout,
   },
   methods: {
     goToCreateForm() {

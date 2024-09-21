@@ -1,4 +1,5 @@
 <template>
+  <NavLayout>
     <div class="container mx-auto p-4">
       <h1 class="text-xl font-bold mb-4">Clients</h1>
       
@@ -28,26 +29,35 @@
         </tbody>
       </table>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    props: {
-      clients: Array,
+  </NavLayout>
+</template>
+
+<script>
+import NavLayout from '@/Layouts/NavLayout.vue'; // Assurez-vous que le chemin est correct
+
+export default {
+  props: {
+    clients: Array,
+  },
+  methods: {
+    goToCreateForm() {
+      this.$inertia.visit('/client/create'); // Redirection vers le formulaire de création
     },
-    methods: {
-      goToCreateForm() {
-        this.$inertia.visit('/client/create'); // Redirect to the form for adding a client
-      },
-      editClient(id) {
-        this.$inertia.visit(`/client/edit/${id}`); // Redirect to the edit form
-      },
-      removeClient(id) {
-        if (confirm('Are you sure you want to remove this client?')) {
-          this.$inertia.delete(`/client/${id}`); // Call the delete route
-        }
+    editClient(id) {
+      this.$inertia.visit(`/client/edit/${id}`); // Redirection vers le formulaire d'édition
+    },
+    removeClient(id) {
+      if (confirm('Are you sure you want to remove this client?')) {
+        this.$inertia.delete(`/client/${id}`); // Appel de la route de suppression
       }
     }
+  },
+  components: {
+    NavLayout,
   }
-  </script>
-  
+}
+</script>
+
+<style scoped>
+/* Ajoutez des styles supplémentaires si nécessaire */
+</style>

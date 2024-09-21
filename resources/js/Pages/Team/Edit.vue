@@ -1,4 +1,5 @@
 <template>
+  <NavLayout>
     <div class="container mx-auto p-4 max-w-md">
       <h1 class="text-2xl font-bold mb-6">Edit Team</h1>
   
@@ -60,41 +61,45 @@
         </button>
       </form>
     </div>
-  </template>
-  
-  <script>
-  import { useForm, usePage } from '@inertiajs/vue3';
-  
-  export default {
-    setup() {
-      const { props } = usePage();
-      const team = props.team || {}; // Default to empty object if team is undefined
-  
-      const form = useForm({
-        first_name: team.first_name || '',
-        surname: team.surname || '',
-        email: team.email || '',
-        password: '', // Leave blank by default
+  </NavLayout>
+</template>
+
+<script>
+import { useForm, usePage } from '@inertiajs/vue3';
+import NavLayout from '@/Layouts/NavLayout.vue'; // Assurez-vous que le chemin est correct
+
+export default {
+  setup() {
+    const { props } = usePage();
+    const team = props.team || {}; // Default to empty object if team is undefined
+
+    const form = useForm({
+      first_name: team.first_name || '',
+      surname: team.surname || '',
+      email: team.email || '',
+      password: '', // Leave blank by default
+    });
+
+    function submitForm() {
+      form.put(`/team/${team.id}`, {
+        onSuccess: () => {
+          console.log('Team updated successfully');
+        },
+        onError: (errors) => {
+          console.error('Error updating team:', errors);
+        },
+        preserveState: true, // Preserve form state on errors
       });
-  
-      function submitForm() {
-        form.put(`/team/${team.id}`, {
-          onSuccess: () => {
-            console.log('Team updated successfully');
-          },
-          onError: (errors) => {
-            console.error('Error updating team:', errors);
-          },
-          preserveState: true, // Preserve form state on errors
-        });
-      }
-  
-      return { form, submitForm };
-    },
-  };
-  </script>
-  
-  <style scoped>
-  /* Add any additional styles if needed */
-  </style>
-  
+    }
+
+    return { form, submitForm };
+  },
+  components: {
+    NavLayout,
+  },
+};
+</script>
+
+<style scoped>
+/* Add any additional styles if needed */
+</style>

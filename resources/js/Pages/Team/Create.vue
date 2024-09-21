@@ -1,84 +1,68 @@
 <template>
-  <div class="container mx-auto p-4 max-w-md">
-    <h1 class="text-2xl font-bold mb-6">Add New Team Member</h1>
+  <NavLayout>
+    <div class="container mx-auto p-4 max-w-md">
+      <h1 class="text-2xl font-bold mb-6">Add New Client</h1>
 
-    <form @submit.prevent="submitForm">
-      <!-- First Name Input -->
-      <div class="mb-4">
-        <label for="first_name" class="block text-gray-700">First Name</label>
-        <input
-          type="text"
-          id="first_name"
-          v-model="form.first_name"
-          class="border p-2 w-full rounded"
-          required
-          placeholder="Enter first name"
-        />
-      </div>
+      <form @submit.prevent="submitForm">
+        <!-- Nom -->
+        <div class="mb-4">
+          <label class="block text-gray-700">Nom</label>
+          <input v-model="form.nom" type="text" class="border p-2 w-full" required placeholder="Enter nom">
+        </div>
 
-      <!-- Surname Input -->
-      <div class="mb-4">
-        <label for="surname" class="block text-gray-700">Surname</label>
-        <input
-          type="text"
-          id="surname"
-          v-model="form.surname"
-          class="border p-2 w-full rounded"
-          required
-          placeholder="Enter surname"
-        />
-      </div>
+        <!-- Prénom -->
+        <div class="mb-4">
+          <label class="block text-gray-700">Prénom</label>
+          <input v-model="form.prenom" type="text" class="border p-2 w-full" required placeholder="Enter prénom">
+        </div>
 
-      <!-- Email Input -->
-      <div class="mb-4">
-        <label for="email" class="block text-gray-700">Email</label>
-        <input
-          type="email"
-          id="email"
-          v-model="form.email"
-          class="border p-2 w-full rounded"
-          required
-          placeholder="Enter email"
-        />
-      </div>
+        <!-- Matricule -->
+        <div class="mb-4">
+          <label class="block text-gray-700">Matricule</label>
+          <input v-model="form.matricule" type="text" class="border p-2 w-full" required placeholder="Enter matricule">
+        </div>
 
-      <!-- Password Input -->
-      <div class="mb-4">
-        <label for="password" class="block text-gray-700">Password</label>
-        <input
-          type="password"
-          id="password"
-          v-model="form.password"
-          class="border p-2 w-full rounded"
-          required
-          placeholder="Enter password"
-        />
-      </div>
+        <!-- Numéro de Téléphone -->
+        <div class="mb-4">
+          <label class="block text-gray-700">Numéro de Téléphone</label>
+          <input v-model="form.numero_telephone" type="tel" class="border p-2 w-full" required placeholder="Enter numéro de téléphone">
+        </div>
 
-      <!-- Submit Button -->
-      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
-        Add Team Member
-      </button>
-    </form>
-  </div>
+        <!-- Adresse -->
+        <div class="mb-4">
+          <label class="block text-gray-700">Adresse</label>
+          <input v-model="form.adresse" type="text" class="border p-2 w-full" required placeholder="Enter adresse">
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add Client</button>
+      </form>
+    </div>
+  </NavLayout>
 </template>
 
 <script>
-import { useForm } from '@inertiajs/vue3'; // Correct import for inertia.js
+import { useForm } from '@inertiajs/vue3';
+import NavLayout from '@/Layouts/NavLayout.vue'; // Assurez-vous que le chemin est correct
 
 export default {
+  components: {
+    NavLayout,
+  },
   setup() {
     const form = useForm({
-      first_name: '',
-      surname: '',
-      email: '',
-      password: ''
+      nom: '',
+      prenom: '',
+      matricule: '',
+      numero_telephone: '',
+      adresse: '',
     });
 
     function submitForm() {
-      form.post('/team', {
+      form.post('/client', {
         onSuccess: () => {
-          console.log('Form submitted successfully');
+          // Redirige vers la page index des clients après succès
+          window.location.href = '/client'; // Modifiez cette URL si nécessaire
         },
         onError: (errors) => {
           console.error('Error submitting form:', errors);
@@ -87,10 +71,12 @@ export default {
     }
 
     return { form, submitForm };
-  }
+  },
 };
 </script>
 
 <style scoped>
-/* Add any additional styles if needed */
+.container {
+  margin-top: 20px;
+}
 </style>
