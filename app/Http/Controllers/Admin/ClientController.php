@@ -14,6 +14,7 @@ class ClientController extends Controller
     public function create()
 {
     return inertia('Client/Create');
+    
 }
 
 public function store(Request $request)

@@ -1,41 +1,59 @@
 <template>
   <NavLayout>
     <div class="container mx-auto p-4 max-w-md">
-      <h1 class="text-2xl font-bold mb-6">Add New Client</h1>
+      <h1 class="text-2xl font-bold mb-6">Add New Team Member</h1>
 
       <form @submit.prevent="submitForm">
-        <!-- Nom -->
+        <!-- First Name -->
         <div class="mb-4">
-          <label class="block text-gray-700">Nom</label>
-          <input v-model="form.nom" type="text" class="border p-2 w-full" required placeholder="Enter nom">
+          <label class="block text-gray-700">First Name</label>
+          <input
+            v-model="form.first_name"
+            type="text"
+            class="border p-2 w-full rounded"
+            required
+            placeholder="Enter first name"
+          />
         </div>
 
-        <!-- Prénom -->
+        <!-- Surname -->
         <div class="mb-4">
-          <label class="block text-gray-700">Prénom</label>
-          <input v-model="form.prenom" type="text" class="border p-2 w-full" required placeholder="Enter prénom">
+          <label class="block text-gray-700">Surname</label>
+          <input
+            v-model="form.surname"
+            type="text"
+            class="border p-2 w-full rounded"
+            required
+            placeholder="Enter surname"
+          />
         </div>
 
-        <!-- Matricule -->
+        <!-- Email -->
         <div class="mb-4">
-          <label class="block text-gray-700">Matricule</label>
-          <input v-model="form.matricule" type="text" class="border p-2 w-full" required placeholder="Enter matricule">
+          <label class="block text-gray-700">Email</label>
+          <input
+            v-model="form.email"
+            type="email"
+            class="border p-2 w-full rounded"
+            required
+            placeholder="Enter email"
+          />
         </div>
 
-        <!-- Numéro de Téléphone -->
+        <!-- Password -->
         <div class="mb-4">
-          <label class="block text-gray-700">Numéro de Téléphone</label>
-          <input v-model="form.numero_telephone" type="tel" class="border p-2 w-full" required placeholder="Enter numéro de téléphone">
-        </div>
-
-        <!-- Adresse -->
-        <div class="mb-4">
-          <label class="block text-gray-700">Adresse</label>
-          <input v-model="form.adresse" type="text" class="border p-2 w-full" required placeholder="Enter adresse">
+          <label class="block text-gray-700">Password</label>
+          <input
+            v-model="form.password"
+            type="password"
+            class="border p-2 w-full rounded"
+            required
+            placeholder="Enter password"
+          />
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add Client</button>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add Team Member</button>
       </form>
     </div>
   </NavLayout>
@@ -43,7 +61,7 @@
 
 <script>
 import { useForm } from '@inertiajs/vue3';
-import NavLayout from '@/Layouts/NavLayout.vue'; // Assurez-vous que le chemin est correct
+import NavLayout from '@/Layouts/NavLayout.vue'; // Ensure this path is correct
 
 export default {
   components: {
@@ -51,22 +69,21 @@ export default {
   },
   setup() {
     const form = useForm({
-      nom: '',
-      prenom: '',
-      matricule: '',
-      numero_telephone: '',
-      adresse: '',
+      first_name: '',
+      surname: '',
+      email: '',
+      password: '',
     });
 
     function submitForm() {
-      form.post('/client', {
+      form.post('/team', {
         onSuccess: () => {
-          // Redirige vers la page index des clients après succès
-          window.location.href = '/client'; // Modifiez cette URL si nécessaire
+          // Redirect to the index page or another appropriate page after success
+          window.location.href = '/team'; // Modify this URL if necessary
         },
         onError: (errors) => {
           console.error('Error submitting form:', errors);
-        }
+        },
       });
     }
 

@@ -108,7 +108,7 @@ export default {
 };
 </script>
 
-<<<<<<< HEAD
+
 <style scoped>
 .home-container {
   position: relative;
@@ -116,7 +116,7 @@ export default {
 }
 
 .background-image {
-  background-image: url('@/assets/background.jpg');
+ 
   background-size: cover;
   background-position: center;
   position: absolute;
@@ -183,4 +183,4 @@ footer a:hover {
   }
   </style>
   
->>>>>>> 9f7cc740ec4d7e51e88e13b33b35fe75a99cf0fa
+

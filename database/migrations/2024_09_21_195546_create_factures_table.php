@@ -13,26 +13,20 @@ return new class extends Migration
     {
         Schema::create('factures', function (Blueprint $table) {
             $table->id();
-            $table->string('numero_facture')->unique(); // Numéro unique de la facture
-            $table->string('nom_fournisseur'); // Nom du fournisseur
-            $table->string('nom_client'); // Nom du client
-            $table->string('matricule_client'); // Matricule fiscal ou autre identifiant du client
-            $table->date('date_facture'); // Date de la facture
-            
-            // Colonnes pour chaque produit
-            $table->json('produits')->nullable(); // Stocke les détails des produits sous forme JSON
-            
-            // Totaux globaux pour la facture
-            $table->decimal('total_ht', 10, 2); // Total hors taxe (HT)
-            $table->decimal('total_tva', 10, 2); // Total de la TVA
-            $table->decimal('total_ttc', 10, 2); // Total toutes taxes comprises (TTC)
+            $table->string('numero_facture')->unique();
+            $table->string('nom_fournisseur');
+            $table->string('nom_client');
+            $table->string('matricule_client', 50)->nullable(); // Make this nullable
+            $table->date('date_facture');
+            $table->json('produits')->nullable();
+            $table->decimal('total_ht', 10, 2);
+            $table->decimal('total_tva', 10, 2);
+            $table->decimal('total_ttc', 10, 2);
             $table->timestamps();
         });
+        
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('factures');

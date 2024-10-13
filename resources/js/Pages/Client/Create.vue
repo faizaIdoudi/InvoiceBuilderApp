@@ -1,37 +1,37 @@
 <template>
   <NavLayout>
-    <div class="container mx-auto p-4">
-      <h1 class="text-xl font-bold mb-4">Add New Client</h1>
+    <div class="container mx-auto p-4 max-w-md">
+      <h1 class="text-2xl font-bold mb-6">Add New Client</h1>
 
       <form @submit.prevent="submitForm">
         <!-- Nom -->
         <div class="mb-4">
           <label class="block text-gray-700">Nom</label>
-          <input v-model="form.nom" type="text" class="border p-2 w-full" required placeholder="Enter nom">
+          <input v-model="form.nom" type="text" class="border p-2 w-full rounded" required placeholder="Enter nom">
         </div>
 
         <!-- Prénom -->
         <div class="mb-4">
           <label class="block text-gray-700">Prénom</label>
-          <input v-model="form.prenom" type="text" class="border p-2 w-full" required placeholder="Enter prénom">
+          <input v-model="form.prenom" type="text" class="border p-2 w-full rounded" required placeholder="Enter prénom">
         </div>
 
         <!-- Matricule -->
         <div class="mb-4">
           <label class="block text-gray-700">Matricule</label>
-          <input v-model="form.matricule" type="text" class="border p-2 w-full" required placeholder="Enter matricule">
+          <input v-model="form.matricule" type="text" class="border p-2 w-full rounded" required placeholder="Enter matricule">
         </div>
 
         <!-- Numéro de Téléphone -->
         <div class="mb-4">
           <label class="block text-gray-700">Numéro de Téléphone</label>
-          <input v-model="form.numero_telephone" type="tel" class="border p-2 w-full" required placeholder="Enter numéro de téléphone">
+          <input v-model="form.numero_telephone" type="tel" class="border p-2 w-full rounded" required placeholder="Enter numéro de téléphone">
         </div>
 
         <!-- Adresse -->
         <div class="mb-4">
           <label class="block text-gray-700">Adresse</label>
-          <input v-model="form.adresse" type="text" class="border p-2 w-full" required placeholder="Enter adresse">
+          <input v-model="form.adresse" type="text" class="border p-2 w-full rounded" required placeholder="Enter adresse">
         </div>
 
         <!-- Submit Button -->
@@ -42,8 +42,7 @@
 </template>
 
 <script>
-import { Inertia } from '@inertiajs/inertia';
-import NavLayout from '@/Layouts/NavLayout.vue'; // Assurez-vous que le chemin est correct
+import NavLayout from '@/Layouts/NavLayout.vue'; // Make sure the path is correct
 
 export default {
   components: {
@@ -62,7 +61,16 @@ export default {
   },
   methods: {
     submitForm() {
-      Inertia.post('/client', this.form);
+      this.$inertia.post('/client', this.form, {
+        onSuccess: () => {
+          // Redirect after successful submission
+          window.location.href = '/client';
+        },
+        onError: (errors) => {
+          console.error('Error submitting form:', errors);
+          this.errors = errors;
+        }
+      });
     }
   }
 }

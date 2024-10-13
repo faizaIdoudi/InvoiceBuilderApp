@@ -37,10 +37,10 @@ Route::middleware([
     Route::get('/facture',[FactureController::class, 'index'])->name('facture.index');
     Route::get('/facture/create', [FactureController::class, 'create'])->name('facture.create');
     Route::post('/facture', [FactureController::class, 'store'])->name('facture.store');
-    Route::get('/facture/edit/{id}', [FactureController::class, 'edit'])->name('facture.edit');
+    Route::get('/facture/{id}/edit', [FactureController::class, 'edit'])->name('facture.edit');
     Route::put('/facture/{id}', [FactureController::class, 'update'])->name('facture.update');
     Route::delete('/facture/{id}', [FactureController::class, 'destroy'])->name('facture.destroy');
-    Route::delete('/facture/{id}', [FactureController::class, 'show'])->name('facture.show');
+    Route::get('/facture/{id}', [FactureController::class, 'show'])->name('facture.show');
 
 
 });
